@@ -1,6 +1,7 @@
 dist
 
 .idea
+local
 
 test/gethData
 test/coverage.out
