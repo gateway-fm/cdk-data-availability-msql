@@ -21,7 +21,7 @@ import (
 	"github.com/0xPolygon/cdk-data-availability/synchronizer"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-	_ "github.com/lib/pq"
+	_ "github.com/microsoft/go-mssqldb"
 	"github.com/urfave/cli/v2"
 )
 
@@ -83,7 +83,7 @@ func start(cliCtx *cli.Context) error {
 		log.Fatal(err)
 	}
 
-	if err = db.RunMigrationsUp(pg); err != nil {
+	if err = db.RunMigrationsUp(pg, c.DB.Name); err != nil {
 		log.Fatal(err)
 	}
 
