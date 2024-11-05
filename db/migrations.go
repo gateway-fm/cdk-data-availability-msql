@@ -1,6 +1,8 @@
 package db
 
 import (
+	"errors"
+	"github.com/0xPolygon/cdk-data-availability/log"
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/sqlserver"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
@@ -12,12 +14,20 @@ func RunMigrationsUp(db *sqlx.DB, dbName string) error {
 	if err != nil {
 		return err
 	}
-	defer driver.Close()
+	//defer driver.Close()
 
 	m, err := migrate.NewWithDatabaseInstance("file://db/migrations", dbName, driver)
 	if err != nil {
 		return err
 	}
 
-	return m.Up()
+	if err = m.Up(); err != nil {
+		if errors.Is(err, migrate.ErrNoChange) {
+			log.Info("no change in migrations")
+			return nil
+		}
+		return err
+	}
+
+	return nil
 }
