@@ -1,0 +1,17 @@
+services:
+  data-availability:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: gatewayfm/cdk-data-availability-msql:latest
+    container_name: data-availability
+    restart: always
+    ports:
+      - 8444:8545
+    volumes:
+      - ./da_config.toml:/app/config.toml:ro
+      - ./da.key:/app/data_availability.key:ro
+    command:
+      - "/bin/sh"
+      - "-c"
+      - "/app/cdk-data-availability run --cfg /app/config.toml"

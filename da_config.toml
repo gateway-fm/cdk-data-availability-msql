@@ -1,0 +1,33 @@
+PrivateKey = {Path = "/app/data_availability.key", Password = "p0uiOK6_B7ULE6MIwA5t2Kb-60M8Q"}
+
+[L1]
+WsURL = "wss://rpc.eu-central-8.gateway.fm/ws/v4/ethereum/non-archival/sepolia"
+RpcURL = "https://rpc.eu-central-8.gateway.fm/v4/ethereum/non-archival/sepolia"
+PolygonValidiumAddress = "0x242B0E9f773B8bC55094b40EFA149f322E665C16"
+DataCommitteeAddress = "0x8f1633023167E73E30Ba5CBb62a7fF2DCc3DcDaD"
+Timeout = "1m"
+RetryPeriod = "5s"
+BlockBatchSize = 64
+GenesisBlock = "0"
+TrackSequencer = false
+
+[Log]
+Environment = "development" # "production" or "development"
+Level = "debug"
+Outputs = ["stderr"]
+
+[DB]
+User = "committee_user"
+Password = "4-v3ry-53cr37-p455w0rd"
+Name = "data-availability"
+Host = "msf-poc.database.windows.net"
+Port = "1433"
+EnableLog = false
+MaxConns = 200
+
+[RPC]
+Host = "0.0.0.0"
+Port = 8545
+ReadTimeout = "60s"
+WriteTimeout = "60s"
+MaxRequestsPerIPAndSecond = 150

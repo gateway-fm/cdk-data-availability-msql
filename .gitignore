@@ -6,3 +6,4 @@ local
 test/gethData
 test/coverage.out
 coverage.out
+.vscode

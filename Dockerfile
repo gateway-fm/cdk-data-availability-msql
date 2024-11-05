@@ -15,6 +15,7 @@ RUN make build
 FROM alpine:3.16.0
 
 COPY --from=build /go/src/github.com/0xPolygon/cdk-data-availability/dist/cdk-data-availability /app/cdk-data-availability
+COPY db/migrations /db/migrations
 
 EXPOSE 8444
 
